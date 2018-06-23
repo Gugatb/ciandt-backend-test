@@ -45,11 +45,11 @@ Java 8, Gson, MongoDB  3.6, Spring Boot
 
 Settings and notes
 -----------------------------------------------------------------------------------------
-Adding the database in MongoDB:
+Add the database in MongoDB:
 
 drink_store
 
-Adding the collections in MongoDB:
+Add the collections in MongoDB:
 
 1. drink
 2. drink_type
