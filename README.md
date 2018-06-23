@@ -83,7 +83,7 @@ Param: {"name": "nao alcoolicas", "capacity": 400.0}
 Endpoints to history (Pending: implement sorting type)
 -----------------------------------------------------------------------------------------
 
-1. [GET] localhost:8080/drink_type/list
+1. [GET] localhost:8080/history/list
 
 Endpoints to section
 -----------------------------------------------------------------------------------------
