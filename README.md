@@ -62,6 +62,15 @@ Call the endpoint:
 
 localhost:8080/storage/set_up
 
+To do list
+-----------------------------------------------------------------------------------------
+1. Endpoint (history): sorting by date
+2. Endpoint (history): sorting by section
+3. Endpoint (storage): can buy
+4. Endpoint (storage): can sell
+5. Validation by day, drink type
+6. Testing classes
+
 Endpoints to drink
 -----------------------------------------------------------------------------------------
 
@@ -80,7 +89,7 @@ Endpoints to drink type
 
 Param: {"name": "nao alcoolicas", "capacity": 400.0}
 
-Endpoints to history (Pending: implement sorting type)
+Endpoints to history
 -----------------------------------------------------------------------------------------
 
 1. [GET] localhost:8080/history/list
@@ -94,10 +103,10 @@ Endpoints to section
 
 Param: {"name": "section 1"}
 
-Endpoints to storage (Pending: implement list by drink type and some validations)
+Endpoints to storage
 -----------------------------------------------------------------------------------------
 
-1. [GET] localhost:8080/storage/set_up
+1. [GET] localhost:8080/storage/seting_up
 2. [POST] localhost:8080/storage/buy
 3. [POST] localhost:8080/storage/sell
 

@@ -46,7 +46,7 @@ public class StorageController {
 		
 		try {
 			if (pType == 0) {
-				service.setUp();
+				service.setingUp();
 				response.setResponse("Configuracao executada com sucesso");
 			}
 			else if (pType == 1) {
@@ -156,7 +156,7 @@ public class StorageController {
 	 * @date 13/05/2018
 	 * @return response a resposta
 	 */
-	@RequestMapping(value = "/set_up", method = RequestMethod.GET)
+	@RequestMapping(value = "/seting_up", method = RequestMethod.GET)
 	public ResponseEntity setUp() {
 		return execute("", "", "", "", 0, 0);
 	}

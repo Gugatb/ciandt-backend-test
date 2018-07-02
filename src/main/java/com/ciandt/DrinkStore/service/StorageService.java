@@ -33,7 +33,7 @@ public class StorageService {
 	 * @author Gugatb
 	 * @date 13/05/2018
 	 */
-	public void setUp() {
+	public void setingUp() {
 		// Configurar o tipo de bebida.
 		if (mongo.find(Collection.DRINK_TYPE.getValue(), "alcoolicas") == null) {
 			DrinkType drinkType = new DrinkType();
