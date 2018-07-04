@@ -107,8 +107,8 @@ Endpoints to storage
 -----------------------------------------------------------------------------------------
 
 1. [GET] localhost:8080/storage/seting_up
-2. [POST] localhost:8080/storage/buy
-3. [POST] localhost:8080/storage/sell
+2. [POST] localhost:8080/storage/buy (Adding drink to storage)
+3. [POST] localhost:8080/storage/sell (Removing drink to storage)
 
 Param: {"drink": "agua", "drink_type": "nao alcoolicas", "section": "section 1", "user": "jhon doe", "volume": 50}
 

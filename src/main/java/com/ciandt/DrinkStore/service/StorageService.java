@@ -1,6 +1,8 @@
 package com.ciandt.DrinkStore.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,75 @@ import com.ciandt.DrinkStore.mongo.Mongo;
 public class StorageService {
 	@Autowired
 	private Mongo mongo;
+	
+	/**
+	 * Encontrar o estoque.
+	 * @author Gugatb
+	 * @date 04/07/2018
+	 * @param pParam1 o parâmetro
+	 * @param pParam2 o parâmetro
+	 * @param pParam3 o parâmetro
+	 * @param pOperation a operação
+	 * @return storages os estoques
+	 */
+	public List<Storage> find(String pParam1, String pParam2, double pParam3, int pOperation) {
+		Document document1 = mongo.find(Collection.DRINK.getValue(), pParam1);
+		Document document2 = mongo.find(Collection.DRINK_TYPE.getValue(), pParam2);
+		List<Storage> storages = new ArrayList<Storage>();
+		
+		try {
+			if (document1 != null) {
+				if (document2 == null && pOperation == 0) {
+					throw new DrinkTypeNotFoundException(
+						Message.DRINK_TYPE_NOT_FOUND.getValue()
+					);
+				}
+				
+				// Definir o tipo de bebida.
+				DrinkType drinkType = new DrinkType();
+				drinkType.set(document2);
+				
+				// Encontrar o estoque disponível para adicionar tipo de bebida.
+				for (Document document : mongo.find(Collection.STORAGE.getValue())) {
+					Storage storage = new Storage();
+					storage.set(document);
+					
+					if (drinkType.getCapacity() >= storage.getVolume() + pParam3 &&
+						drinkType.getId() == storage.getDrinkType()) {
+						storages.add(storage);
+					}
+				}
+				
+				/*
+				 * Verificar o volume total em cada estoque antes de de verificar a disponibilidade.
+				 * Encontrar o estoque disponível para remover uma bebida.
+				 * Talvez utilizar a lógica de "disponível para adicionar" antes de adicionar novas bebidas?
+				 */
+			}
+			else {
+				throw new DrinkNotFoundException(
+					Message.DRINK_NOT_FOUND.getValue()
+				);
+			}
+		}
+		catch (DrinkNotFoundException exception) {
+			throw new DrinkNotFoundException(
+				Message.DRINK_NOT_FOUND.getValue()
+			);
+		}
+		catch (DrinkTypeNotFoundException exception) {
+			throw new DrinkTypeNotFoundException(
+				Message.DRINK_TYPE_NOT_FOUND.getValue()
+			);
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+			throw new UnavailableException(
+				Message.UNAVAILABLE.getValue()
+			);
+		}
+		return storages;
+	}
 	
 	/**
 	 * Configurar o estoque.
